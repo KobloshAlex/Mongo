@@ -1,10 +1,13 @@
 package com.cogent.info.entities;
 
+import org.bson.types.ObjectId;
+
 import java.util.List;
 
 public class Student {
 
-    private Integer id;
+    private ObjectId id;
+    private Integer studentId;
     private String firstName;
     private String lastName;
     private String email;
@@ -12,11 +15,11 @@ public class Student {
     private String password;
     private List<Course> courses;
 
-    public Integer getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public Student setId(Integer id) {
+    public Student setId(ObjectId id) {
         this.id = id;
         return this;
     }
@@ -72,6 +75,29 @@ public class Student {
 
     public Student setCourses(List<Course> courses) {
         this.courses = courses;
+        return this;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", balance=" + balance +
+                ", password='" + password + '\'' +
+                ", courses=" + courses +
+                '}';
+    }
+
+    public Integer getStudentId() {
+        return studentId;
+    }
+
+    public Student setStudentId(Integer studentId) {
+        this.studentId = studentId;
         return this;
     }
 }
