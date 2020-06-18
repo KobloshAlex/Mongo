@@ -12,6 +12,7 @@ import static java.util.Collections.singletonList;
 
 public class Controller {
 
+    private static final int ENROLL_PRICE = 600;
     private final StudentDao studentDao;
     private final CourseDao courseDao;
     private final ConsoleViewProvider viewProvider;
@@ -74,12 +75,17 @@ public class Controller {
                        .setName(iteratedCourse.getName())
                        .setCode(iteratedCourse.getCode());
             courseDao.update(iteratedCourse.setStudents(student));
-        }
-        //add course to student record
-        for (Student iteratorStudent : student) {
-            studentDao.update(iteratorStudent.setCourses(singletonList(courseToAdd)));
-        }
 
+            for (Student iteratorStudent : student) {
+                if (iteratorStudent.getBalance() < ENROLL_PRICE) {
+                    viewProvider.printMessage("Not Enough Balance");
+                } else {
+                    studentDao.update(iteratorStudent.setCourses(singletonList(courseToAdd))
+                                                     .setBalance(iteratorStudent.getBalance() - ENROLL_PRICE));
+                }
+
+            }
+        }
     }
 
     private void printDefault() {
