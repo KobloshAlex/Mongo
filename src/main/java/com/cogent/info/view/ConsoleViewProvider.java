@@ -1,7 +1,7 @@
 package com.cogent.info.view;
 
-import com.cogent.info.entities.Course;
-import com.cogent.info.entities.Student;
+import com.cogent.info.models.Course;
+import com.cogent.info.models.Student;
 
 import java.util.List;
 import java.util.Scanner;

@@ -1,7 +1,7 @@
 package com.cogent.info.dao.impl;
 
 import com.cogent.info.dao.Crud;
-import com.cogent.info.entities.Course;
+import com.cogent.info.models.Course;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;

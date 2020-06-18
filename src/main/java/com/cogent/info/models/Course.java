@@ -1,4 +1,4 @@
-package com.cogent.info.entities;
+package com.cogent.info.models;
 
 import java.util.List;
 

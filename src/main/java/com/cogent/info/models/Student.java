@@ -1,6 +1,4 @@
-package com.cogent.info.entities;
-
-import org.bson.types.ObjectId;
+package com.cogent.info.models;
 
 import java.util.List;
 
