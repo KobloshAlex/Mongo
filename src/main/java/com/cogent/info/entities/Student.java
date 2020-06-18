@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Student {
 
-    private ObjectId id;
     private Integer studentId;
     private String firstName;
     private String lastName;
@@ -15,12 +14,13 @@ public class Student {
     private String password;
     private List<Course> courses;
 
-    public ObjectId getId() {
-        return id;
+
+    public Integer getStudentId() {
+        return studentId;
     }
 
-    public Student setId(ObjectId id) {
-        this.id = id;
+    public Student setStudentId(Integer studentId) {
+        this.studentId = studentId;
         return this;
     }
 
@@ -78,11 +78,10 @@ public class Student {
         return this;
     }
 
-
     @Override
     public String toString() {
         return "Student{" +
-                "id=" + id +
+                "studentId=" + studentId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
@@ -90,14 +89,5 @@ public class Student {
                 ", password='" + password + '\'' +
                 ", courses=" + courses +
                 '}';
-    }
-
-    public Integer getStudentId() {
-        return studentId;
-    }
-
-    public Student setStudentId(Integer studentId) {
-        this.studentId = studentId;
-        return this;
     }
 }

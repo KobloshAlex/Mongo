@@ -1,17 +1,20 @@
 package com.cogent.info.entities;
 
+import java.util.List;
+
 public class Course {
 
-    private Integer id;
+    private Integer courseId;
     private Integer code;
     private String name;
+    private List<Student> students;
 
-    public Integer getId() {
-        return id;
+    public Integer getCourseId() {
+        return courseId;
     }
 
-    public Course setId(Integer id) {
-        this.id = id;
+    public Course setCourseId(Integer courseId) {
+        this.courseId = courseId;
         return this;
     }
 
@@ -33,12 +36,23 @@ public class Course {
         return this;
     }
 
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public Course setStudents(List<Student> students) {
+        this.students = students;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
-                "id=" + id +
+                "courseId=" + courseId +
                 ", code=" + code +
                 ", name='" + name + '\'' +
+                ", students=" + students +
                 '}';
     }
 }

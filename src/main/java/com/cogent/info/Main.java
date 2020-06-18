@@ -1,44 +1,44 @@
 package com.cogent.info;
 
 import com.cogent.info.connection.MongoConnection;
+import com.cogent.info.controller.Controller;
+import com.cogent.info.dao.impl.CourseDao;
 import com.cogent.info.dao.impl.StudentDao;
 import com.cogent.info.entities.Course;
 import com.cogent.info.entities.Student;
+import com.cogent.info.view.ConsoleViewProvider;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
 
-import static java.util.Collections.singletonList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
+
+    private static final String DB = "cogent";
+    private static final String COURSES_COLLECTION = "courses";
+    private static final String STUDENTS_COLLECTION = "students";
 
     public static void main(String[] args) {
         MongoConnection mongoConnection = new MongoConnection();
 
         try (MongoClient mongoClient = MongoClients.create(mongoConnection.getMongoClient())) {
 
-            MongoDatabase db = mongoClient.getDatabase("cogent");
+            MongoDatabase db = mongoClient.getDatabase(DB);
 
-            MongoCollection<Student> studentsCollection = db.getCollection("students", Student.class);
+            final CourseDao courseDao = new CourseDao(db.getCollection(COURSES_COLLECTION, Course.class));
+            final StudentDao studentDao = new StudentDao(db.getCollection(STUDENTS_COLLECTION, Student.class));
+            final ConsoleViewProvider viewProvider = new ConsoleViewProvider(new Scanner(System.in));
+            final Controller controller = new Controller(studentDao, courseDao, viewProvider);
 
-            studentsCollection.deleteMany(new Document());
-            Student student = new Student().setStudentId(2)
-                                           .setFirstName("Alexx")
-                                           .setLastName("Koblosh")
-                                           .setEmail("alex@gmial.com")
-                                           .setBalance(1000)
-                                           .setPassword("1123").setCourses(singletonList(new Course().setId(1)
-                                                                                                     .setCode(101)
-                                                                                                     .setName("Math")));
+//            final List<Student> student = studentDao.findById(2);
+//
+//            for (Student iter : student) {
+//                studentDao.update(iter.setCourses(courseDao.findById(1)));
+//            }
 
-            StudentDao studentDao = new StudentDao(studentsCollection);
-            studentDao.save(student);
-
-            //update
-            student.setBalance(4000);
-            studentDao.update(student);
+             controller.callMenu();
 
         }
     }

@@ -9,10 +9,12 @@ import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 public class MongoConnection {
+
+    private static final String CONNECTION_STRING = "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false";
+
     public MongoClientSettings getMongoClient() {
 
-        final ConnectionString connectionString = new ConnectionString
-                ("mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false");
+        final ConnectionString connectionString = new ConnectionString(CONNECTION_STRING);
 
         final CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder()
                                                                          .automatic(true)
