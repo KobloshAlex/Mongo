@@ -34,7 +34,7 @@ public class StudentDao implements Crud<Student, Integer> {
 
     @Override
     public void update(Student student) {
-        collection.replaceOne(Filters.eq("studentId", student.getId()), student);
+        collection.replaceOne(Filters.eq("studentId", student.getStudentId()), student);
     }
 
     @Override
